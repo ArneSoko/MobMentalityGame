@@ -2,13 +2,10 @@ extends CharacterBody3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
-@export var jumpStr=100
+@export var jumpStr=30
 # The downward acceleration when in the air, in meters per second squared.
-@export var fall_acceleration = 10
+@export var fall_acceleration = 2
 @onready var camorigin=$CamYaw
-@onready var camarm=$CamYaw/CamPitch
-@onready var arm=$CamYaw/CamPitch/CamArm
-@onready var menu=$"../Menu/PauseMenu"
 
 var sensitivity = 0.5
 
@@ -18,20 +15,8 @@ func _ready():
 	#Capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
-func _input(event):
-	#Change view distance
-	if Input.is_action_pressed("Zoom_In") and arm.spring_length > 0:
-		arm.spring_length -= 0.2
-	elif Input.is_action_pressed("Zoom_Out"):
-		arm.spring_length += 0.2
-		
-	#Move camera with mouse
-	if event is InputEventMouseMotion and Input.mouse_mode!=Input.MOUSE_MODE_VISIBLE:
-		camorigin.rotate_y(deg_to_rad(-event.relative.x * sensitivity))
-		camarm.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
-		camarm.rotation.x = clamp(camarm.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-		
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	#If mouse is captured
 	if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		#Assigned moves to axes
