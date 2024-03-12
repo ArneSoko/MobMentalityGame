@@ -25,7 +25,7 @@ func _physics_process(_delta):
 		var direction = (camorigin.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		#Rotate to face forward and move
 		if direction:
-			$Pivot.rotation.y=camorigin.rotation.y
+			$Pivot.basis=Basis.looking_at(direction)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		#Slow to a stop
