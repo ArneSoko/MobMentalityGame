@@ -7,7 +7,7 @@ extends CharacterBody3D
 @onready var camorigin=$CamYaw
 @onready var camarm=$CamYaw/CamPitch
 @onready var arm=$CamYaw/CamPitch/CamArm
-@onready var menu=$"../CanvasLayer/PauseMenu"
+@onready var menu=$"../Menu/PauseMenu"
 
 var sensitivity = 0.5
 
@@ -43,5 +43,4 @@ func _physics_process(delta):
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		velocity = target_velocity
-	if not menu.is_visible():
-		move_and_slide()
+	move_and_slide()

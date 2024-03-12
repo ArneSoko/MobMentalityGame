@@ -38,10 +38,11 @@ spring_length = 2.0
 [node name="Camera3D" type="Camera3D" parent="Player/CamYaw/CamPitch/CamArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Menu" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 2
 
-[node name="PauseMenu" type="VBoxContainer" parent="CanvasLayer"]
+[node name="PauseMenu" type="VBoxContainer" parent="Menu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,17 +56,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_1q0se")
 
-[node name="ExitButton" type="Button" parent="CanvasLayer/PauseMenu"]
+[node name="ExitButton" type="Button" parent="Menu/PauseMenu"]
 layout_mode = 2
 script = ExtResource("3_jjld5")
 
-[node name="CloseButton" type="Button" parent="CanvasLayer/PauseMenu"]
+[node name="CloseButton" type="Button" parent="Menu/PauseMenu"]
 layout_mode = 2
 script = ExtResource("4_shpen")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="Timer" type="Timer" parent="Menu/PauseMenu"]
+wait_time = 0.5
+one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+[node name="Menu_Back" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Menu_Back"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
