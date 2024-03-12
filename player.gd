@@ -6,6 +6,7 @@ extends CharacterBody3D
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 2
 @onready var camorigin=$CamYaw
+@onready var body=$Pivot/Body
 
 var sensitivity = 0.5
 
@@ -13,6 +14,7 @@ var target_velocity = Vector3.ZERO
 
 func _ready():
 	#Capture mouse
+	print(body.get_active_material(0).get_albedo())
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 

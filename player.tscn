@@ -23,16 +23,16 @@ script = ExtResource("1_vmmpy")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+[node name="Body" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_gomgk")
 surface_material_override/0 = SubResource("StandardMaterial3D_5yh0t")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Pivot"]
+[node name="Eyes" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(0.5, 0, 0, 0, -8.74228e-09, -0.5, 0, 0.2, -2.18557e-08, 0, 1.21, -0.423)
 mesh = SubResource("CylinderMesh_yutlf")
 surface_material_override/0 = SubResource("StandardMaterial3D_7mhp4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2g6vs")
