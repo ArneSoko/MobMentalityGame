@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://fscl3bpb5ug1"]
 
 [ext_resource type="PackedScene" uid="uid://bifif61oy6qoj" path="res://player.tscn" id="1_moph6"]
-[ext_resource type="Script" path="res://CameraYaw.gd" id="2_yujr5"]
-[ext_resource type="Script" path="res://CameraPitch.gd" id="3_hy5ae"]
-[ext_resource type="Script" path="res://ButtonScript.gd" id="4_s56ny"]
+[ext_resource type="Script" path="res://menu.gd" id="2_1q0se"]
+[ext_resource type="Script" path="res://Exit.gd" id="3_jjld5"]
+[ext_resource type="Script" path="res://Close.gd" id="4_shpen"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_36req"]
 size = Vector3(30, 1, 30)
@@ -27,17 +27,49 @@ transform = Transform3D(0.980721, 0.00210774, 0.195404, -0.195415, 0.010578, 0.9
 
 [node name="Player" parent="." instance=ExtResource("1_moph6")]
 
-[node name="CameraYaw" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-script = ExtResource("2_yujr5")
+[node name="CamYaw" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="CameraPitch" type="Node3D" parent="Player/CameraYaw"]
-script = ExtResource("3_hy5ae")
+[node name="CamPitch" type="Node3D" parent="Player/CamYaw"]
 
-[node name="Camera3D" type="Camera3D" parent="Player/CameraYaw/CameraPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+[node name="CamArm" type="SpringArm3D" parent="Player/CamYaw/CamPitch"]
+spring_length = 2.0
 
-[node name="Button" type="Button" parent="Player/CameraYaw/CameraPitch/Camera3D"]
-offset_right = 73.0
-offset_bottom = 31.0
-script = ExtResource("4_s56ny")
+[node name="Camera3D" type="Camera3D" parent="Player/CamYaw/CamPitch/CamArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 4.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1q0se")
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+script = ExtResource("3_jjld5")
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+script = ExtResource("4_shpen")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.231373, 0.231373, 0.231373, 0.803922)

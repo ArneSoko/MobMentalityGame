@@ -1,6 +1,6 @@
 extends Node3D
 
-var camera_sensitivity = 0.01
+var camera_sensitivity = 0.005
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
